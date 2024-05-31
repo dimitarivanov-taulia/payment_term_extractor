@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "payment_term_extractor/wsgi.py",
+      "src": "wsgi.py",
       "use": "@vercel/python",
       "config": {"maxLambdaSize": "15mb", "runtime": "python3.x"}
     },
@@ -17,7 +17,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "payment_term_extractor/wsgi.py"
+      "dest": "wsgi.py"
     },
     {
       "src": "/static/(.*)",
