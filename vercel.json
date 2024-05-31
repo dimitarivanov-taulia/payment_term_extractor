@@ -2,14 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "manage.py",
-      "use": "@vercel/python"
+      "src": "payment_term_extractor/wsgi.py",
+      "use": "@vercel/python",
+      "config": {"maxLambdaSize": "15mb", "runtime": "python3.x"}
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "manage.py"
+      "dest": "payment_term_extractor/wsgi.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
     }
   ]
 }
