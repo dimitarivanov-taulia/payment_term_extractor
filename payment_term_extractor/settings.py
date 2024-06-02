@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-j9!yzj9zq2fva28p(u8%f!56r#a84=7&5p(-i-7rbchj3q64%!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") != "False"
 
-ALLOWED_HOSTS = [".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = [".vercel.app", ".now.sh", "payment-term-extractor-new.vercel.app"]
 
 
 # Application definition
