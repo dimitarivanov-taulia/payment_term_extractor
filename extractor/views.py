@@ -1,7 +1,6 @@
 import openai
 import pandas as pd
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.conf import settings
 import os
 import time
@@ -95,8 +94,8 @@ def guess_payment_term_column(df):
             return column
     return None
 
-
 def upload_file(request):
+    global last_message_timestamp
     if request.method == 'POST':
         uploaded_file = request.FILES['file']
         file_path = os.path.join(settings.MEDIA_ROOT, uploaded_file.name)
@@ -119,12 +118,7 @@ def upload_file(request):
                     column_name = guessed_column
                     print(f"Guessed the column containing payment terms: {column_name}")
                 else:
-                    print("Available columns in the file:")
-                    for i, col in enumerate(df.columns):
-                        print(f"{i + 1}. {col}")
-                    col_index = int(
-                        input("Enter the number corresponding to the 'Payment Term Description' column: ")) - 1
-                    column_name = df.columns[col_index]
+                    return render(request, 'upload.html', {'message': "Could not guess the column containing payment terms."})
 
             # Remove header row from DataFrame after guessing the column
             unique_terms = df[[column_name]].drop_duplicates().iloc[1:]
@@ -156,8 +150,7 @@ def upload_file(request):
                         terms.append((description.strip(), float(term.strip()), float(cliff.strip())))
 
                 if len(terms) != len(chunk):
-                    print(
-                        f"Mismatch in the number of terms for rows {start_row} to {start_row + batch_size}. Stopping the process.")
+                    print(f"Mismatch in the number of terms for rows {start_row} to {start_row + batch_size}. Stopping the process.")
                     break
                 else:
                     all_terms.extend(terms)
@@ -171,16 +164,9 @@ def upload_file(request):
                 output_file_name = f"pt_output_{os.path.splitext(base_name)[0]}.xlsx"
                 output_file_path = os.path.join(os.path.dirname(file_path), output_file_name)
 
-                return render(request, 'upload.html',
-                              {'message': f"Payment terms saved successfully to {output_file_path}"})
+                return render(request, 'upload.html', {'message': f"Payment terms saved successfully to {output_file_path}"})
             else:
                 return render(request, 'upload.html', {'message': "No payment terms found in the responses."})
         else:
-            return render(request, 'upload.html',
-                          {'message': "Failed to process the file. Please try uploading again."})
+            return render(request, 'upload.html', {'message': "Failed to process the file. Please try uploading again."})
     return render(request, 'upload.html')
-
-
-
-
-
