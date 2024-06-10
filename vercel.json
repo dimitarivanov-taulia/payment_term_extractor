@@ -1,9 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "payment_term_extractor/wsgi.py", "use": "@vercel/python" }
+    {
+      "src": "wsgi.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/bash"
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "payment_term_extractor/wsgi.py" }
+    {
+      "src": "/(.*)",
+      "dest": "wsgi.py"
+    }
   ]
 }
