@@ -1,9 +1,9 @@
 #!/bin/bash
 # Install dependencies
-/vercel/path0/.python/bin/pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # Collect static files
-/vercel/path0/.python/bin/python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 
 # Create the SQLite database
-/vercel/path0/.python/bin/python manage.py migrate
+python3 manage.py migrate
