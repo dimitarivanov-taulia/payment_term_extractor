@@ -1,9 +1,13 @@
 #!/bin/bash
+
+# Install SQLite3
+apt-get update && apt-get install -y sqlite3 libsqlite3-dev
+
 # Install dependencies
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 # Collect static files
-python3 manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
 # Create the SQLite database
-python3 manage.py migrate
+python manage.py migrate
