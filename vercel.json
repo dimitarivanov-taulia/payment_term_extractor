@@ -3,7 +3,8 @@
   "builds": [
     {
       "src": "build_files.sh",
-      "use": "@vercel/bash"
+      "use": "@vercel/static-build",
+      "config": { "distDir": "staticfiles_build" }
     },
     {
       "src": "wsgi.py",
@@ -17,8 +18,7 @@
       "dest": "wsgi.py"
     }
   ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "payment_term_extractor.settings",
-    "OPENAI_API_KEY": "@openai_api_key"
+  "projectSettings": {
+    "framework": null
   }
 }
