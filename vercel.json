@@ -3,11 +3,10 @@
   "builds": [
     {
       "src": "wsgi.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/bash"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
@@ -15,5 +14,10 @@
       "src": "/(.*)",
       "dest": "wsgi.py"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "OPENAI_API_KEY": "@openai_api_key"
+    }
+  }
 }

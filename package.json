@@ -1,0 +1,7 @@
+{
+  "name": "payment_term_extractor",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "python3.9 manage.py collectstatic --noinput && python3.9 manage.py migrate"
+  }
+}
