@@ -9,6 +9,3 @@ $PIP_BIN_PATH install -r requirements.txt
 
 # Collect static files
 $PYTHON_BIN_PATH manage.py collectstatic --noinput
-
-# Create the SQLite database
-$PYTHON_BIN_PATH manage.py migrate
