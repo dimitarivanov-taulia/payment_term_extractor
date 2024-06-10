@@ -1,3 +1,4 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -31,24 +32,15 @@ h5 {
     margin-bottom: 20px;
 }
 
-form {
-    margin-bottom: 20px;
-}
-
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: bold;
-    color: #333;
 }
 
 input[type="file"] {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    display: block;
+    margin: 0 auto 20px auto;
 }
 
 button {
@@ -56,9 +48,8 @@ button {
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
 button:hover {
@@ -67,12 +58,11 @@ button:hover {
 
 .logs {
     margin-top: 20px;
-}
-
-.logs p {
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #e6f7ff;
-    color: #0073e6;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
 }
