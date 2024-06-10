@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Install SQLite3
-apt-get update && apt-get install -y sqlite3 libsqlite3-dev
+# Use the correct Python environment path
+PYTHON_BIN_PATH=$(which python3 || which python)
+PIP_BIN_PATH=$(which pip3 || which pip)
 
 # Install dependencies
-pip install -r requirements.txt
+$PIP_BIN_PATH install -r requirements.txt
 
 # Collect static files
-python manage.py collectstatic --noinput
+$PYTHON_BIN_PATH manage.py collectstatic --noinput
 
 # Create the SQLite database
-python manage.py migrate
+$PYTHON_BIN_PATH manage.py migrate
